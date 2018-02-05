@@ -26,7 +26,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Ky7-lm-k55">
                                 <rect key="frame" x="92" y="127" width="191.5" height="35"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="snow" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5JS-7j-Aq2">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clear-day" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5JS-7j-Aq2">
                                         <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="35" id="5KV-zD-lDu"/>
@@ -138,7 +138,7 @@
     </scenes>
     <resources>
         <image name="DarkSkyLogo" width="1904" height="759"/>
+        <image name="clear-day" width="59" height="60"/>
         <image name="refresh" width="43" height="43"/>
-        <image name="snow" width="59" height="60"/>
     </resources>
 </document>

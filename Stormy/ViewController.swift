@@ -20,9 +20,13 @@ class ViewController: UIViewController {
     
     let client = DarkSkyAPIClient()
     
+    override func viewWillAppear(_ animated: Bool) {
+        getCurrentWeather()
+        super.viewWillAppear(true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        getCurrentWeather()
     }
 
     override func didReceiveMemoryWarning() {

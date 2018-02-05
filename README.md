@@ -1,5 +1,5 @@
 # Stormy
-Stormy is a weather application for iOS built on Swift. The app displays the current temperature, humidity, and precipitation data using the [Dark Sky Weather API](https://darksky.net/dev). I built this app as a way to learn more about iOS networking, concurrency, and asynchronous calls in Swift.
+Stormy is a weather app built on Swift for iOS. The app displays the current temperature, humidity, and precipitation data using the [Dark Sky Weather API](https://darksky.net/dev). I built this app as a way to learn more about iOS networking, concurrency, and asynchronous calls in Swift.
 
 ## Screenshots
 

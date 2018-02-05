@@ -22,15 +22,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let coordinate = Coordinate(latitude: 37.8267, longitude: -122.4233)
-        
-        client.getCurrentWeather(at: coordinate) { [unowned self] currentWeather, error in
-            if let currentWeather = currentWeather {
-                let viewModel = CurrentWeatherViewModel(model: currentWeather)
-                self.displayWeather(using: viewModel)
-            }
-        }
+        getCurrentWeather()
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,5 +36,29 @@ class ViewController: UIViewController {
         currentPrecipitationLabel.text = viewModel.precipitationProbability
         currentWeatherIcon.image = viewModel.icon
         currentSummaryLabel.text = viewModel.summary
+    }
+    
+    @IBAction func getCurrentWeather() {
+        toggleRefreshAnimation(on: true)
+        
+        let coordinate = Coordinate(latitude: 37.8267, longitude: -122.4233)
+        
+        client.getCurrentWeather(at: coordinate) { [unowned self] currentWeather, error in
+            if let currentWeather = currentWeather {
+                let viewModel = CurrentWeatherViewModel(model: currentWeather)
+                self.displayWeather(using: viewModel)
+                self.toggleRefreshAnimation(on: false)
+            }
+        }
+    }
+    
+    func toggleRefreshAnimation(on: Bool) {
+        refreshButton.isHidden = on
+        
+        if on {
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+        }
     }
 }

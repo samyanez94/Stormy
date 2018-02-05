@@ -9,50 +9,38 @@
 import Foundation
 import UIKit
 
-enum WeatherIcon {
-    case clearDay
-    case clearNight
-    case rain
-    case snow
-    case sleet
-    case wind
-    case fog
-    case cloudy
-    case partlyCloudyDay
-    case partlyCloudyNight
-    case `default`
+enum WeatherIcon: String {
+    case ClearDay = "clear-day"
+    case ClearNight = "clear-night"
+    case Rain = "rain"
+    case Snow = "snow"
+    case Sleet = "sleet"
+    case Wind = "wind"
+    case Fog = "fog"
+    case Cloudy = "cloudy"
+    case PartlyCloudyDay = "partly-cloudy-day"
+    case PartlyCloudyNight = "partly-cloudy-night"
+    case UnexpectedType = "default"
     
-    init(iconString: String) {
-        switch iconString {
-        case "clear-day": self = .clearDay
-        case "clear-night": self = .clearNight
-        case "rain": self = .rain
-        case "snow": self = .snow
-        case "sleet": self = .sleet
-        case "wind": self = .wind
-        case "fog": self = .fog
-        case "cloudy": self = .cloudy
-        case "partly-cloudy-day": self = .partlyCloudyDay
-        case "partly-cloudy-night": self = .partlyCloudyNight
-        default: self = .default
+    init(rawValue: String) {
+        switch rawValue {
+        case "clear-day": self = .ClearDay
+        case "clear-night": self = .ClearNight
+        case "rain": self = .Rain
+        case "snow": self = .Snow
+        case "sleet": self = .Sleet
+        case "wind": self = .Wind
+        case "fog": self = .Fog
+        case "cloudy": self = .Cloudy
+        case "partly-cloudy-day": self = .PartlyCloudyDay
+        case "partly-cloudy-night": self = .PartlyCloudyNight
+        default: self = .UnexpectedType
         }
     }
 }
 
 extension WeatherIcon {
     var image: UIImage {
-        switch self {
-        case .clearDay: return #imageLiteral(resourceName: "clear-day")
-        case .clearNight: return #imageLiteral(resourceName: "clear-night")
-        case .rain: return #imageLiteral(resourceName: "rain")
-        case .snow: return #imageLiteral(resourceName: "snow")
-        case .sleet: return #imageLiteral(resourceName: "sleet")
-        case .wind: return #imageLiteral(resourceName: "wind")
-        case .fog: return #imageLiteral(resourceName: "fog")
-        case .cloudy: return #imageLiteral(resourceName: "cloudy")
-        case .partlyCloudyDay: return #imageLiteral(resourceName: "partly-cloudy-day")
-        case .partlyCloudyNight: return #imageLiteral(resourceName: "partly-cloudy-night")
-        case .default: return #imageLiteral(resourceName: "default")
-        }
+        return UIImage(named: self.rawValue)!
     }
 }

@@ -34,12 +34,12 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func displayWeather(using viewModel: CurrentWeatherViewModel) {
-        currentTemperatureLabel.text = viewModel.temperature
-        currentHumidityLabel.text = viewModel.humidity
-        currentPrecipitationLabel.text = viewModel.precipitationProbability
-        currentWeatherIcon.image = viewModel.icon
-        currentSummaryLabel.text = viewModel.summary
+    func displayWeather(using model: CurrentWeather) {
+        currentTemperatureLabel.text = model.temperatureString
+        currentHumidityLabel.text = model.humidityString
+        currentPrecipitationLabel.text = model.precipitationProbabilityString
+        currentWeatherIcon.image = model.iconImage
+        currentSummaryLabel.text = model.summary
     }
     
     @IBAction func getCurrentWeather() {
@@ -49,8 +49,7 @@ class ViewController: UIViewController {
         
         client.getCurrentWeather(at: coordinate) { [unowned self] currentWeather, error in
             if let currentWeather = currentWeather {
-                let viewModel = CurrentWeatherViewModel(model: currentWeather)
-                self.displayWeather(using: viewModel)
+                self.displayWeather(using: currentWeather)
                 self.toggleRefreshAnimation(on: false)
             } else if let error = error {
                 self.showAlert("Unable to retrieve forecast", message: error.localizedDescription)

@@ -7,13 +7,35 @@
 //
 
 import Foundation
+import UIKit
 
 struct CurrentWeather {
     let temperature: Double
     let humidity: Double
     let precipitationProbability: Double
     let summary: String
-    let icon: String
+    let iconString: String
+}
+
+extension CurrentWeather {
+    var temperatureString: String {
+        return "\(Int(temperature))º"
+    }
+    
+    var humidityString: String {
+        let percentageValue = Int(humidity * 100)
+        return "\(percentageValue)%"
+    }
+    
+    var precipitationProbabilityString: String {
+        let percentageValue = Int(precipitationProbability * 100)
+        return "\(percentageValue)%"
+    }
+    
+    var iconImage: UIImage {
+        let icon = WeatherIcon(iconString: iconString)
+        return icon.image
+    }
 }
 
 extension CurrentWeather {
@@ -23,7 +45,7 @@ extension CurrentWeather {
         static let humidity = "humidity"
         static let precipitationProbability = "precipProbability"
         static let summary = "summary"
-        static let icon = "icon"
+        static let iconString = "icon"
     }
     
     init?(json: [String: AnyObject]) {
@@ -31,12 +53,12 @@ extension CurrentWeather {
             let humidity = json[Key.humidity] as? Double,
             let precipitationProbability = json[Key.precipitationProbability] as? Double,
             let summary = json[Key.summary] as? String,
-            let icon = json[Key.icon] as? String {
+            let iconString = json[Key.iconString] as? String {
             self.temperature = temperature
             self.humidity = humidity
             self.precipitationProbability = precipitationProbability
             self.summary = summary
-            self.icon = icon
+            self.iconString = iconString
         } else {
             return nil
         }

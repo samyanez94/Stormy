@@ -27,17 +27,18 @@ extension CurrentWeather {
     }
     
     init?(json: [String: AnyObject]) {
-        guard let temperature = json[Key.temperature] as? Double,
-        let humidity = json[Key.humidity] as? Double,
-        let precipitationProbability = json[Key.precipitationProbability] as? Double,
-        let summary = json[Key.summary] as? String,
-        let icon = json[Key.icon] as? String else {
-                return nil
+        if let temperature = json[Key.temperature] as? Double,
+            let humidity = json[Key.humidity] as? Double,
+            let precipitationProbability = json[Key.precipitationProbability] as? Double,
+            let summary = json[Key.summary] as? String,
+            let icon = json[Key.icon] as? String {
+            self.temperature = temperature
+            self.humidity = humidity
+            self.precipitationProbability = precipitationProbability
+            self.summary = summary
+            self.icon = icon
+        } else {
+            return nil
         }
-        self.temperature = temperature
-        self.humidity = humidity
-        self.precipitationProbability = precipitationProbability
-        self.summary = summary
-        self.icon = icon
     }
 }

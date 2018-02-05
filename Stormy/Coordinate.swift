@@ -8,11 +8,7 @@
 
 import Foundation
 
-struct Coordinate: CustomStringConvertible{
+struct Coordinate {
     let latitude: Double
     let longitude: Double
-    
-    var description: String {
-        return "\(latitude),\(longitude)"
-    }
 }

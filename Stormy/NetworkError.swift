@@ -1,5 +1,5 @@
 //
-//  NetworkingError.swift
+//  NetworkError.swift
 //  Stormy
 //
 //  Created by Samuel Yanez on 2/4/18.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum NetworkingError: Error {
+enum NetworkError: Error {
     case requestFailed
     case responseUnsuccessful
     case invalidData
@@ -17,7 +17,7 @@ enum NetworkingError: Error {
     case jsonParsingFailure
 }
 
-extension NetworkingError: LocalizedError {
+extension NetworkError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .requestFailed:

@@ -18,15 +18,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    let client = DarkSkyAPIClient()
+    let client = ForecastClient(key: "1c5b0f5f869f9b9dfe0a5e478a08ad5e")
     
-    override func viewWillAppear(_ animated: Bool) {
-        getCurrentWeather()
-        super.viewWillAppear(true)
-    }
+    let coordinate = Coordinate(latitude: 37.8267, longitude: -122.423)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getCurrentWeather()
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,18 +32,8 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func displayWeather(using model: CurrentWeather) {
-        currentTemperatureLabel.text = model.temperatureString
-        currentHumidityLabel.text = model.humidityString
-        currentPrecipitationLabel.text = model.precipitationProbabilityString
-        currentWeatherIcon.image = model.iconImage
-        currentSummaryLabel.text = model.summary
-    }
-    
     @IBAction func getCurrentWeather() {
         toggleRefreshAnimation(on: true)
-        
-        let coordinate = Coordinate(latitude: 37.8267, longitude: -122.4233)
         
         client.getCurrentWeather(at: coordinate) { [unowned self] currentWeather, error in
             if let currentWeather = currentWeather {
@@ -55,6 +43,14 @@ class ViewController: UIViewController {
                 self.showAlert("Unable to retrieve forecast", message: error.localizedDescription)
             }
         }
+    }
+    
+    func displayWeather(using model: CurrentWeather) {
+        currentTemperatureLabel.text = model.temperatureString
+        currentHumidityLabel.text = model.humidityString
+        currentPrecipitationLabel.text = model.precipitationProbabilityString
+        currentWeatherIcon.image = model.iconImage
+        currentSummaryLabel.text = model.summary
     }
     
     func toggleRefreshAnimation(on: Bool) {

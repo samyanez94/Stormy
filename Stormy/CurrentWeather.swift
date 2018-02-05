@@ -33,7 +33,7 @@ extension CurrentWeather {
     }
     
     var iconImage: UIImage {
-        let icon = WeatherIcon(iconString: iconString)
+        let icon = WeatherIcon(rawValue: iconString)
         return icon.image
     }
 }

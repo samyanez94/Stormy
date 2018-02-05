@@ -52,6 +52,8 @@ class ViewController: UIViewController {
                 let viewModel = CurrentWeatherViewModel(model: currentWeather)
                 self.displayWeather(using: viewModel)
                 self.toggleRefreshAnimation(on: false)
+            } else if let error = error {
+                self.showAlert("Unable to retrieve forecast", message: error.localizedDescription)
             }
         }
     }
@@ -64,5 +66,13 @@ class ViewController: UIViewController {
         } else {
             activityIndicator.stopAnimating()
         }
+    }
+    
+    func showAlert(_ title: String, message: String?, style: UIAlertControllerStyle = .alert) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
+        let dismissAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(dismissAction)
+        
+        present(alertController, animated: true, completion: nil)
     }
 }

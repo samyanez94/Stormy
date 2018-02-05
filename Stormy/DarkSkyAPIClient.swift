@@ -17,7 +17,7 @@ class DarkSkyAPIClient {
     
     let downloader = JSONDownloader()
     
-    typealias CurrentWeatherCompletionHandler = (CurrentWeather?, DarkSkyError?) -> Void
+    typealias CurrentWeatherCompletionHandler = (CurrentWeather?, NetworkingError?) -> Void
     
     func getCurrentWeather(at coordinate: Coordinate, completionHandler completion: @escaping CurrentWeatherCompletionHandler) {
         

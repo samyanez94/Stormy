@@ -43,7 +43,7 @@ class ViewController: UIViewController {
             if let placemark = placemark, let locality = placemark.locality {
                 self.currentLocationLabel.text = "\(locality), \(placemark.administrativeArea!)"
             }
-            // TODO: Throw error when placemark of locality are empty
+            // TODO: Throw error when placemark or locality are empty
         }
     }
     

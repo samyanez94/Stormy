@@ -43,19 +43,19 @@ class APIClient {
                 completion(nil, .requestFailed)
                 return
             }
-            if HTTPResponse.statusCode == 200 {
-                if let data = data {
-                    do {
-                        let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject]
-                        completion(json, nil)
-                    } catch {
-                        completion(nil, .jsonConvertionFailure)
-                    }
-                } else {
-                    completion(nil, .invalidData)
-                }
-            } else {
+            guard HTTPResponse.statusCode == 200 else {
                 completion(nil, .responseUnsuccessful)
+                return
+            }
+            guard let data = data else {
+                completion(nil, .invalidData)
+                return
+            }
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject]
+                completion(json, nil)
+            } catch {
+                completion(nil, .jsonConvertionFailure)
             }
         }
         return task
@@ -66,15 +66,12 @@ class APIClient {
         let task = JSONTask(with: request) { json, error in
             
             DispatchQueue.main.async {
-                guard let json = json else {
+                
+                guard let json = json, let value = parse(json) else {
                     completion(nil, error)
-                        return
+                    return
                 }
-                if let value = parse(json) {
-                    completion(value, nil)
-                } else {
-                    completion(nil, error)
-                }
+                completion(value, nil)
             }
         }
         task.resume()

@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import CoreLocation
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var currentLocationLabel: UILabel!
     @IBOutlet weak var currentTemperatureLabel: UILabel!
     @IBOutlet weak var currentHumidityLabel: UILabel!
     @IBOutlet weak var currentPrecipitationLabel: UILabel!
@@ -18,12 +20,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    let client = ForecastClient(key: "1c5b0f5f869f9b9dfe0a5e478a08ad5e")
+    let locationManager = LocationManager()
     
-    let coordinate = Coordinate(latitude: 37.8267, longitude: -122.423)
+    let client = ForecastClient(key: "1c5b0f5f869f9b9dfe0a5e478a08ad5e")
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getCurrentLocation()
         getCurrentWeather()
     }
 
@@ -35,7 +38,7 @@ class ViewController: UIViewController {
     @IBAction func getCurrentWeather() {
         toggleRefreshAnimation(on: true)
         
-        client.getCurrentWeather(at: coordinate) { [unowned self] currentWeather, error in
+        client.getCurrentWeather(at: locationManager.currentLocation) { [unowned self] currentWeather, error in
             if let currentWeather = currentWeather {
                 self.displayWeather(using: currentWeather)
                 self.toggleRefreshAnimation(on: false)
@@ -45,7 +48,16 @@ class ViewController: UIViewController {
         }
     }
     
+    func getCurrentLocation() {
+        locationManager.lookUpCurrentLocation() { placemark in
+            if let placemark = placemark {
+               self.currentLocationLabel.text = placemark.locality
+            }
+        }
+    }
+    
     func displayWeather(using model: CurrentWeather) {
+        
         currentTemperatureLabel.text = model.temperatureString
         currentHumidityLabel.text = model.humidityString
         currentPrecipitationLabel.text = model.precipitationProbabilityString

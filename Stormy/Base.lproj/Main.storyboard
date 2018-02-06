@@ -124,6 +124,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="5hm-tZ-rMC" id="QC5-D2-hiF"/>
                         <outlet property="currentHumidityLabel" destination="tQ3-8l-y9t" id="IZ3-cp-Pq2"/>
+                        <outlet property="currentLocationLabel" destination="Zfb-0N-40k" id="gtC-JH-aH9"/>
                         <outlet property="currentPrecipitationLabel" destination="Fys-co-En2" id="UOH-O3-Frx"/>
                         <outlet property="currentSummaryLabel" destination="nw9-ct-mBf" id="TrR-Zu-IQi"/>
                         <outlet property="currentTemperatureLabel" destination="wz5-Cc-ahc" id="TKq-9f-co8"/>

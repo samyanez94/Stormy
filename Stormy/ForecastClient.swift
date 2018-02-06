@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import CoreLocation
 
 enum ForecastEndpoint: Endpoint {
-    case current(key: String, coordinate: Coordinate)
+    case current(key: String, location: CLLocation)
     
     var baseURL: URL {
         return URL(string: "https://api.darksky.net")!
@@ -17,8 +18,8 @@ enum ForecastEndpoint: Endpoint {
     
     var path: String {
         switch self {
-        case .current(let key, let coordinate):
-            return "/forecast/\(key)/\(coordinate.latitude),\(coordinate.longitude)"
+        case .current(let key, let location):
+            return "/forecast/\(key)/\(location.coordinate.latitude),\(location.coordinate.longitude)"
         }
     }
     
@@ -33,13 +34,13 @@ class ForecastClient: APIClient {
     
     typealias CurrentWeatherCompletionHandler = (CurrentWeather?, NetworkError?) -> Void
     
-    func getCurrentWeather(at coordinate: Coordinate, completion: @escaping CurrentWeatherCompletionHandler) {
+    func getCurrentWeather(at location: CLLocation, completion: @escaping CurrentWeatherCompletionHandler) {
         
-        let request = ForecastEndpoint.current(key: self.key, coordinate: coordinate).request
+        let request = ForecastEndpoint.current(key: self.key, location: location).request
         
         fetch(request, parse: { json -> CurrentWeather? in
-            // Parse from JSON response to CurrentWeather
             
+            // Parse from JSON response to CurrentWeather
             if let currentWeatherDictionary = json["currently"] as? [String : AnyObject] {
                 return CurrentWeather(json: currentWeatherDictionary)
             } else {

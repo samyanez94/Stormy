@@ -24,17 +24,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Ky7-lm-k55">
-                                <rect key="frame" x="92" y="127" width="191.5" height="35"/>
+                                <rect key="frame" x="92" y="127" width="191.5" height="93"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clear-day" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5JS-7j-Aq2">
-                                        <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                        <rect key="frame" x="0.0" y="29" width="35" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="35" id="5KV-zD-lDu"/>
                                             <constraint firstAttribute="height" constant="35" id="yYS-7v-qyW"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alcatraz Island, CA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zfb-0N-40k">
-                                        <rect key="frame" x="50" y="7.5" width="141.5" height="20.5"/>
+                                        <rect key="frame" x="50" y="36.5" width="141.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -42,19 +42,19 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="90º" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wz5-Cc-ahc">
-                                <rect key="frame" x="86.5" y="250" width="202" height="167.5"/>
+                                <rect key="frame" x="106.5" y="250" width="202" height="167.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="140"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HUMIDITY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pw5-Ka-7iP" userLabel="Humidity Label">
-                                <rect key="frame" x="67.5" y="433.5" width="80.5" height="20.5"/>
+                                <rect key="frame" x="67.5" y="457.5" width="80.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fys-co-En2">
-                                <rect key="frame" x="247.5" y="462" width="41" height="20.5"/>
+                                <rect key="frame" x="247.5" y="486" width="41" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -67,13 +67,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RAIN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cH-un-mE1" userLabel="Rain Label">
-                                <rect key="frame" x="248.5" y="433.5" width="38.5" height="20.5"/>
+                                <rect key="frame" x="248.5" y="457.5" width="38.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQ3-8l-y9t">
-                                <rect key="frame" x="87.5" y="462" width="41" height="20.5"/>
+                                <rect key="frame" x="87.5" y="486" width="41" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -106,18 +106,18 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="0VI-wM-KgI" secondAttribute="bottom" constant="8" id="Jcx-BV-Wdz"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="nw9-ct-mBf" secondAttribute="bottom" priority="750" constant="85.5" id="Lem-MC-HAU"/>
                             <constraint firstItem="D1p-yQ-YI3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" priority="750" constant="32" id="Nkf-DL-Yer"/>
-                            <constraint firstItem="wz5-Cc-ahc" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Ky7-lm-k55" secondAttribute="bottom" constant="16" id="Ogt-Qw-d2n"/>
+                            <constraint firstItem="wz5-Cc-ahc" firstAttribute="top" relation="lessThanOrEqual" secondItem="Ky7-lm-k55" secondAttribute="bottom" constant="30" id="Ogt-Qw-d2n"/>
                             <constraint firstItem="pw5-Ka-7iP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-80" id="PQ3-3P-2c1"/>
                             <constraint firstItem="D1p-yQ-YI3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cd3-id-GNY"/>
                             <constraint firstItem="tQ3-8l-y9t" firstAttribute="top" secondItem="pw5-Ka-7iP" secondAttribute="bottom" constant="8" id="dP6-hC-zzS"/>
                             <constraint firstItem="8cH-un-mE1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="80" id="e7m-8g-c0u"/>
                             <constraint firstItem="Fys-co-En2" firstAttribute="centerX" secondItem="8cH-un-mE1" secondAttribute="centerX" id="gd5-4A-wxY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="0VI-wM-KgI" secondAttribute="trailing" id="i66-qf-9wp"/>
-                            <constraint firstItem="wz5-Cc-ahc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jGX-vh-SVw"/>
+                            <constraint firstItem="wz5-Cc-ahc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="20" id="jGX-vh-SVw"/>
                             <constraint firstItem="wz5-Cc-ahc" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="lfu-nU-Pd9"/>
                             <constraint firstItem="nw9-ct-mBf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="llY-TT-Bld"/>
                             <constraint firstItem="tQ3-8l-y9t" firstAttribute="centerX" secondItem="pw5-Ka-7iP" secondAttribute="centerX" id="ova-6R-gyT"/>
-                            <constraint firstItem="pw5-Ka-7iP" firstAttribute="top" secondItem="wz5-Cc-ahc" secondAttribute="bottom" constant="16" id="qXZ-ho-ggT"/>
+                            <constraint firstItem="pw5-Ka-7iP" firstAttribute="top" secondItem="wz5-Cc-ahc" secondAttribute="bottom" constant="40" id="qXZ-ho-ggT"/>
                             <constraint firstItem="5hm-tZ-rMC" firstAttribute="centerX" secondItem="D1p-yQ-YI3" secondAttribute="centerX" id="rh8-CV-AwC"/>
                         </constraints>
                     </view>

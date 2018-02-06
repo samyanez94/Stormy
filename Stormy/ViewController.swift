@@ -51,7 +51,7 @@ class ViewController: UIViewController {
     func getCurrentLocation() {
         locationManager.lookUpCurrentLocation() { placemark in
             if let placemark = placemark {
-               self.currentLocationLabel.text = placemark.locality
+               self.currentLocationLabel.text = "\(placemark.locality!), \(placemark.administrativeArea!)"
             }
         }
     }

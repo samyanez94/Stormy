@@ -12,6 +12,7 @@ import CoreLocation
 class LocationManager {
     let locationManager = CLLocationManager()
     
+    // Alcatraz Island is set as current location in the case authorization is not given
     var currentLocation: CLLocation! {
         if (authorizationStatus) {
             return locationManager.location
@@ -20,15 +21,18 @@ class LocationManager {
         }
     }
     
+    // Checks if the user has enabled location services
     var authorizationStatus: Bool {
         return CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
             CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways
     }
     
+    // Request authorization for location services from the user
     func requestAuthorization() {
         locationManager.requestWhenInUseAuthorization()
     }
     
+    // Looks up location data from the location coordinates
     func lookUpCurrentLocation(completionHandler: @escaping (CLPlacemark?) -> Void ) {
         // Use the last reported location.
         if let lastLocation = self.locationManager.location {

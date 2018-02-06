@@ -9,24 +9,20 @@
 import Foundation
 import CoreLocation
 
-enum ForecastEndpoint: Endpoint {
-    case current(key: String, location: CLLocation)
+// The endpoint describes the path to the resource we are trying to access
+struct ForecastEndpoint: Endpoint {
     
-    var baseURL: URL {
-        return URL(string: "https://api.darksky.net")!
-    }
-    
-    var path: String {
-        switch self {
-        case .current(let key, let location):
-            return "/forecast/\(key)/\(location.coordinate.latitude),\(location.coordinate.longitude)"
-        }
-    }
+    let key: String
+    let base: String = "https://api.darksky.net"
+    let path: String
     
     var request: URLRequest {
-        let url = URL(string: path, relativeTo: baseURL)!
-        print(url.absoluteString)
-        return URLRequest(url: url)
+        return URLRequest(url: URL(string: path, relativeTo: URL(string: base))!)
+    }
+    
+    init(key: String, location: CLLocation) {
+        self.key = key
+        self.path = "/forecast/\(key)/\(location.coordinate.latitude),\(location.coordinate.longitude)"
     }
 }
 
@@ -34,19 +30,23 @@ class ForecastClient: APIClient {
     
     typealias CurrentWeatherCompletionHandler = (CurrentWeather?, NetworkError?) -> Void
     
+    // Fetches the current weather data from a CLLocation
     func getCurrentWeather(at location: CLLocation, completion: @escaping CurrentWeatherCompletionHandler) {
         
-        let request = ForecastEndpoint.current(key: self.key, location: location).request
+        let endpoint = ForecastEndpoint(key: key, location: location)
+        let request = endpoint.request
         
-        fetch(request, parse: { json -> CurrentWeather? in
-            
-            // Parse from JSON response to CurrentWeather
-            if let currentWeatherDictionary = json["currently"] as? [String : AnyObject] {
-                return CurrentWeather(json: currentWeatherDictionary)
-            } else {
-                return nil
-            }
-            
-            }, completion: completion)
+        // Fetch takes a request, a parse clousure to handle the json, and a completition clousure to handle the parsed data
+        fetch(request, parse: parse, completion: completion)
+    }
+    
+    // Parses the json data into CurrentWeather
+    func parse(json: [String : AnyObject]) -> CurrentWeather? {
+        if let currentWeatherDictionary = json["currently"] as? [String : AnyObject] {
+            return CurrentWeather(json: currentWeatherDictionary)
+        } else {
+            return nil
+            // TODO: Handle parsing error
         }
     }
+}

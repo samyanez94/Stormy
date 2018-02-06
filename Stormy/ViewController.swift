@@ -20,12 +20,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    // Handles location services
     let locationManager = LocationManager()
     
+    // Handles API services
     let client = ForecastClient(key: "1c5b0f5f869f9b9dfe0a5e478a08ad5e")
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager.requestAuthorization()
         getCurrentLocation()
         getCurrentWeather()
     }
@@ -35,29 +38,36 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func getCurrentLocation() {
+        locationManager.lookUpCurrentLocation() { placemark in
+            if let placemark = placemark, let locality = placemark.locality {
+                self.currentLocationLabel.text = "\(locality), \(placemark.administrativeArea!)"
+            }
+            // TODO: Throw error when placemark of locality are empty
+        }
+    }
+    
     @IBAction func getCurrentWeather() {
+        // Toggles the refesh animation until asynchronous code is done
         toggleRefreshAnimation(on: true)
         
+        // Asks the API client to get the current weather for the current location
         client.getCurrentWeather(at: locationManager.currentLocation) { [unowned self] currentWeather, error in
+            
+            // Updates the UI if call suceeds
             if let currentWeather = currentWeather {
                 self.displayWeather(using: currentWeather)
                 self.toggleRefreshAnimation(on: false)
+            
+            // Otherwise, displays the error received
             } else if let error = error {
                 self.showAlert("Unable to retrieve forecast", message: error.localizedDescription)
             }
         }
     }
     
-    func getCurrentLocation() {
-        locationManager.lookUpCurrentLocation() { placemark in
-            if let placemark = placemark {
-               self.currentLocationLabel.text = "\(placemark.locality!), \(placemark.administrativeArea!)"
-            }
-        }
-    }
-    
     func displayWeather(using model: CurrentWeather) {
-        
+        // Updates all the labels in the UI with the data from the model
         currentTemperatureLabel.text = model.temperatureString
         currentHumidityLabel.text = model.humidityString
         currentPrecipitationLabel.text = model.precipitationProbabilityString
@@ -67,7 +77,6 @@ class ViewController: UIViewController {
     
     func toggleRefreshAnimation(on: Bool) {
         refreshButton.isHidden = on
-        
         if on {
             activityIndicator.startAnimating()
         } else {

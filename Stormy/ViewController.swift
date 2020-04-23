@@ -20,10 +20,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    // Handles location services
+    /// Handles location services
     let locationManager = LocationManager()
     
-    // Handles API services
+    /// Handles API services
     let client = ForecastClient(key: "1c5b0f5f869f9b9dfe0a5e478a08ad5e")
     
     override func viewDidLoad() {
@@ -31,11 +31,6 @@ class ViewController: UIViewController {
         locationManager.requestAuthorization()
         getCurrentLocation()
         getCurrentWeather()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func getCurrentLocation() {
@@ -67,7 +62,6 @@ class ViewController: UIViewController {
     }
     
     func displayWeather(using model: CurrentWeather) {
-        // Updates all the labels in the UI with the data from the model
         currentTemperatureLabel.text = model.temperatureString
         currentHumidityLabel.text = model.humidityString
         currentPrecipitationLabel.text = model.precipitationProbabilityString

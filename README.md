@@ -1,5 +1,5 @@
 # Stormy
-[Fifth app of the Treehouse iOS Development Techdegree](https://teamtreehouse.com/techdegree/ios-development).
+Fifth app of the [Treehouse iOS Development Techdegree](https://teamtreehouse.com/techdegree/ios-development).
 
 iOS weather application that displays the current temperature, humidity, and precipitation data using the [Dark Sky Weather API](https://darksky.net/dev). This app was built as a way to learn more about networking, concurrency, asynchronous calls, and location services in iOS.
 
